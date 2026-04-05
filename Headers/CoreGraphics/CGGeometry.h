@@ -33,6 +33,7 @@
 extern "C" {
 #endif
 
+#ifndef CF_DEFINES_CG_TYPES
 typedef NSPoint CGPoint;
 typedef NSSize CGSize;
 typedef NSRect CGRect;
@@ -46,6 +47,7 @@ enum
   CGRectMaxXEdge = 2,
   CGRectMaxYEdge = 3
 };
+#endif /* CF_DEFINES_CG_TYPES */
 typedef int CGRectEdge;
 
 /** Point at 0,0 */
@@ -90,12 +92,14 @@ OP_GEOM_SCOPE CGSize CGSizeMake(CGFloat width, CGFloat height) OP_GEOM_ATTR;
 /** Returns a CGRect having point of origin (x, y) and size (width, height). */
 OP_GEOM_SCOPE CGRect CGRectMake(CGFloat x, CGFloat y, CGFloat width, CGFloat height) OP_GEOM_ATTR;
 
+#ifndef CF_DEFINES_CG_TYPES
 OP_GEOM_SCOPE CGRect NSRectToCGRect(NSRect rect);
 OP_GEOM_SCOPE NSRect NSRectFromCGRect(CGRect rect);
 OP_GEOM_SCOPE CGPoint NSPointToCGPoint(NSPoint point);
 OP_GEOM_SCOPE NSPoint NSPointFromCGPoint(CGPoint point);
 OP_GEOM_SCOPE NSSize NSSizeFromCGSize(CGSize size);
 OP_GEOM_SCOPE CGSize NSSizeToCGSize(NSSize size);
+#endif /* CF_DEFINES_CG_TYPES */
 
 /** Returns an equivalent rect which has positive width and heght. */
 OP_GEOM_SCOPE CGRect CGRectStandardize(CGRect rect) OP_GEOM_ATTR;
@@ -329,10 +333,11 @@ OP_GEOM_SCOPE CGRect CGRectMake(CGFloat x, CGFloat y, CGFloat width, CGFloat hei
   return rect;
 }
 
+#ifndef CF_DEFINES_CG_TYPES
 OP_GEOM_SCOPE CGRect NSRectToCGRect(NSRect rect)
 {
   CGRect cgrect;
-  
+
   cgrect.origin.x = rect.origin.x;
   cgrect.origin.y = rect.origin.y;
   cgrect.size.width = rect.size.width;
@@ -343,7 +348,7 @@ OP_GEOM_SCOPE CGRect NSRectToCGRect(NSRect rect)
 OP_GEOM_SCOPE NSRect NSRectFromCGRect(CGRect rect)
 {
   NSRect nsrect;
-  
+
   nsrect.origin.x = rect.origin.x;
   nsrect.origin.y = rect.origin.y;
   nsrect.size.width = rect.size.width;
@@ -386,6 +391,7 @@ OP_GEOM_SCOPE CGSize NSSizeToCGSize(NSSize size)
   cgsize.height = size.height;
   return cgsize;
 }
+#endif /* CF_DEFINES_CG_TYPES */
 
 OP_GEOM_SCOPE CGRect CGRectStandardize(CGRect rect)
 {
