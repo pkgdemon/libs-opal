@@ -32,6 +32,12 @@
 // for off_t
 #include <sys/types.h>
 
+// Import Foundation first in ObjC mode so CoreFoundation.h inline functions
+// can resolve NSObject method signatures (-hash, -isEqual:, etc.)
+#ifdef __OBJC__
+#import <Foundation/NSObject.h>
+#endif
+
 #import <CoreFoundation/CoreFoundation.h>
 
 /* Missing CoreFoundation types not provided by GNUstep CoreFoundation */
